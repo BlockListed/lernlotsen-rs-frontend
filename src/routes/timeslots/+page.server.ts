@@ -1,6 +1,6 @@
 import { API_URL } from '$env/static/private';
 
-export async function load() {
+export async function load({ fetch }) {
 	const data = await fetch(`${API_URL}/timeslots`);
 
 	if (data.status != 200) {
@@ -14,7 +14,7 @@ export async function load() {
 }
 
 export const actions = {
-	create: async ({ request }) => {
+	create: async ({ request, fetch }) => {
 		const data = await request.formData();
 
 		let index = 0;
