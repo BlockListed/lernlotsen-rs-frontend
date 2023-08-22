@@ -5,9 +5,13 @@
 	export let data;
 
 	let timeslots = data.timeslots.msg;
+
+	let hidden = true;
 </script>
 
-<CreateTimeslot />
+<button on:click={() => hidden = !hidden}>{hidden ? "Show" : "Hide"}</button>
+
+<CreateTimeslot {hidden} />
 
 {#each timeslots as timeslot}
 	<Timeslot {timeslot} />
