@@ -6,7 +6,6 @@ import '../app.css';
 <nav class="flex flex-row justify-start bg-slate-500">
 	<NavbarItem href="/">Home</NavbarItem>
 	<NavbarItem href="/timeslots">Timeslots</NavbarItem>
-	<NavbarItem href="entries">Entries</NavbarItem>
 </nav>
 
 <div class="m-5">
