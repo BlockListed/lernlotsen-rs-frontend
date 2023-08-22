@@ -2,7 +2,9 @@
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
 
-	export let hidden: boolean;
+	import { fly } from 'svelte/transition';
+
+	export let visible: boolean;
 
 	let student_inputs: string[] = [];
 
@@ -25,7 +27,8 @@
 	}
 </script>
 
-<form use:enhance method="POST" action="?/create" class="{hidden ? "hidden" : "flex"} flex-col bg-slate-300 p-6 rounded-md w-2/3">
+{#if visible}
+<form transition:fly={{ x: 200, duration: 200 }} use:enhance method="POST" action="?/create" class="flex flex-col bg-slate-300 p-6 rounded-md w-2/3">
 	<div class="flex flex-row">
 		<div class="flex flex-col mx-2">
 			<label class="mb-1.5">
@@ -76,3 +79,4 @@
 	</div>
 	<button class="bg-slate-500 rounded-md m-2">Submit</button>
 </form>
+{/if}

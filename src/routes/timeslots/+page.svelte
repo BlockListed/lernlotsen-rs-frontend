@@ -6,12 +6,12 @@
 
 	let timeslots = data.timeslots.msg;
 
-	let hidden = true;
+	let create_visible = false;
 </script>
 
-<button on:click={() => hidden = !hidden}>{hidden ? "Show" : "Hide"}</button>
+<button on:click={() => create_visible = !create_visible} class="bg-slate-500 rounded-md p-2 w-2/3 text-xl font-semibold">{create_visible ? "Hide" : "Show"}</button>
 
-<CreateTimeslot {hidden} />
+<CreateTimeslot visible={create_visible} />
 
 {#each timeslots as timeslot}
 	<Timeslot {timeslot} />
