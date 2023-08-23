@@ -1,13 +1,13 @@
 <script lang="ts">
-	import ItemContainer from "./item_container.svelte";
+	import ItemContainer from './item_container.svelte';
 
-	import type { Timeslot } from "$lib/types";
+	import type { Timeslot } from '$lib/types';
 
 	export let timeslot: Timeslot;
 </script>
 
 <a href={`/entries/${timeslot.id}`}>
-	<ItemContainer title={timeslot.subject} >
+	<ItemContainer title={timeslot.subject}>
 		<div class="flex flex-col">
 			<div>Weekday: <strong>{timeslot.weekday}</strong></div>
 			<div>Start: <strong>{timeslot.time.start}</strong></div>

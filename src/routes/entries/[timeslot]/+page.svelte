@@ -1,7 +1,12 @@
 <script lang="ts">
-	import type { PageData } from "./$types";
+	import Entry from '$lib/components/entry.svelte';
+	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	let entries = data.entries.msg;
 </script>
 
-<p>{JSON.stringify(data.entries)}</p>
+{#each entries as entry}
+	<Entry {entry} />
+{/each}

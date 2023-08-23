@@ -17,7 +17,7 @@ export interface Timeslot {
 }
 
 export interface SuccessState {
-	Success: [Student, string];
+	Success: [Student, string][];
 }
 
 export interface Entry {

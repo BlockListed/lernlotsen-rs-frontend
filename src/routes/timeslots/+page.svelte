@@ -9,7 +9,11 @@
 	let create_visible = false;
 </script>
 
-<button on:click={() => create_visible = !create_visible} class="bg-slate-500 rounded-md p-2 w-2/3 text-xl font-semibold">{create_visible ? "Hide" : "Show"}</button>
+<button
+	on:click={() => (create_visible = !create_visible)}
+	class="bg-slate-500 rounded-md p-2 w-2/3 text-xl font-semibold"
+	>{create_visible ? 'Hide' : 'Show'}</button
+>
 
 <CreateTimeslot visible={create_visible} />
 

@@ -1,6 +1,6 @@
 <script>
 	import NavbarItem from '$lib/components/util/navbar_item.svelte';
-import '../app.css';
+	import '../app.css';
 </script>
 
 <nav class="flex flex-row justify-start bg-slate-500">

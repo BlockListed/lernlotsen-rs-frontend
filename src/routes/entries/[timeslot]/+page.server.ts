@@ -1,4 +1,4 @@
-import { API_URL } from '$env/static/private'
+import { API_URL } from '$env/static/private';
 
 export async function load({ params, fetch }) {
 	const data = await fetch(`${API_URL}/timeslots/${params.timeslot}/entries`);
@@ -9,6 +9,6 @@ export async function load({ params, fetch }) {
 	}
 
 	return {
-		entries: await data.json(),
-	}
+		entries: await data.json()
+	};
 }
