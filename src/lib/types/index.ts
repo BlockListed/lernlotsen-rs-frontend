@@ -17,11 +17,28 @@ export interface Timeslot {
 }
 
 export interface SuccessState {
-	Success: [Student, string][];
+	status: "Success";
+	students: [Student, string][]
+}
+
+export interface CancelledByStudents {
+	status: "CancelledByStudents"
+}
+
+export interface CancelledByTutor {
+	status: "CancelledByTutor"
+}
+
+export interface Holidays {
+	status: "Holidays"
+}
+
+export interface Other {
+	status: "Other"
 }
 
 export interface Entry {
 	index: number;
 	timeslot_id: string;
-	state: string | SuccessState;
+	state: SuccessState | CancelledByStudents | CancelledByTutor | Holidays | Other
 }
