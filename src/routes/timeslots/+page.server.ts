@@ -1,6 +1,7 @@
 import { API_URL } from '$env/static/private';
+import type { PageServerLoad } from './$types.js';
 
-export async function load({ fetch }) {
+export const load: PageServerLoad = async ({ fetch }) => {
 	const data = await fetch(`${API_URL}/timeslots`);
 
 	if (data.status != 200) {

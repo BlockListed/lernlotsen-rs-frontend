@@ -38,11 +38,12 @@
 		<div class="flex flex-row">
 			<div class="flex flex-col mx-2">
 				<label class="mb-1.5">
-					<input type="text" name="subject" class="rounded" />
-					Subject
+					Subject:
+					<input type="text" name="subject" class="rounded p-1" />
 				</label>
 				<label class="mb-1.5">
-					<select name="weekday">
+					Weekday:
+					<select name="weekday" class="rounded p-1">
 						<option value="mon">Monday</option>
 						<option value="tue">Tuesday</option>
 						<option value="wed">Wednesday</option>
@@ -51,42 +52,41 @@
 						<option value="sat">Saturday</option>
 						<option value="sun">Sunday</option>
 					</select>
-					Weekday
 				</label>
 				<label class="mb-1.5">
-					<input type="time" name="time-start" class="rounded" />
-					Start Time
+					Start Time:
+					<input type="time" name="time-start" class="rounded p-1" />
 				</label>
 				<label class="mb-1.5">
-					<input type="time" name="time-end" class="rounded" />
-					End Time
+					End Time:
+					<input type="time" name="time-end" class="rounded p-1" />
 				</label>
 				<label class="mb-1.5">
-					<input type="date" name="date-start" class="rounded" />
-					Start Date
+					Start Date:
+					<input type="date" name="date-start" class="rounded p-1" />
 				</label>
 				<label class="mb-1.5">
-					<input type="date" name="date-end" class="rounded" />
-					End Date
+					End Date:
+					<input type="date" name="date-end" class="rounded p-1" />
 				</label>
 			</div>
 			<div class="flex flex-col mx-2">
 				{#each student_inputs as name, i}
 					<label>
-						<input type="text" class="mb-1.5 rounded" {name} />
-						Student {i + 1}
+						Student {i + 1}:
+						<input type="text" class="mb-1.5 rounded p-1" {name} />
 					</label>
 				{/each}
 			</div>
 		</div>
 		<div class="grid grid-cols-2">
-			<button on:click|preventDefault={add_student_input} class="bg-slate-500 rounded-md m-2"
+			<button on:click|preventDefault={add_student_input} class="bg-slate-500 rounded-md m-2 p-1"
 				>Add student field</button
 			>
-			<button on:click|preventDefault={remove_student_input} class="bg-slate-500 rounded-md m-2"
+			<button on:click|preventDefault={remove_student_input} class="bg-slate-500 rounded-md m-2 p-1"
 				>Remove student field</button
 			>
 		</div>
-		<button class="bg-slate-500 rounded-md m-2">Submit</button>
+		<button class="bg-slate-500 rounded-md m-2 py-1">Submit</button>
 	</form>
 {/if}

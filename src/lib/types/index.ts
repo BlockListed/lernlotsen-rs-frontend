@@ -25,6 +25,10 @@ export interface CancelledByStudents {
 	status: "CancelledByStudents"
 }
 
+export interface StudentsMissing {
+	status: "StudentsMissing"
+}
+
 export interface CancelledByTutor {
 	status: "CancelledByTutor"
 }
@@ -37,8 +41,15 @@ export interface Other {
 	status: "Other"
 }
 
+export type EntryState = SuccessState | CancelledByStudents | StudentsMissing | CancelledByTutor | Holidays | Other;
+
 export interface Entry {
 	index: number;
 	timeslot_id: string;
-	state: SuccessState | CancelledByStudents | CancelledByTutor | Holidays | Other
+	state: EntryState;
+}
+
+export interface CreateEntry {
+	state: EntryState,
+	index: number;
 }
