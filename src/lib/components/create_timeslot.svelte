@@ -33,9 +33,9 @@
 		use:enhance
 		method="POST"
 		action="?/create"
-		class="flex flex-col bg-slate-300 p-6 rounded-md w-2/3"
+		class="flex flex-col bg-slate-300 p-6 rounded-md md:w-2/3"
 	>
-		<div class="flex flex-row">
+		<div class="flex md:flex-row flex-col">
 			<div class="flex flex-col mx-2">
 				<label class="mb-1.5">
 					Subject:
@@ -79,11 +79,11 @@
 				{/each}
 			</div>
 		</div>
-		<div class="grid grid-cols-2">
-			<button on:click|preventDefault={add_student_input} class="bg-slate-500 rounded-md m-2 p-1"
+		<div class="flex md:flex-row flex-col">
+			<button on:click|preventDefault={add_student_input} class="grow bg-slate-500 rounded-md m-2 p-1"
 				>Add student field</button
 			>
-			<button on:click|preventDefault={remove_student_input} class="bg-slate-500 rounded-md m-2 p-1"
+			<button on:click|preventDefault={remove_student_input} class="grow bg-slate-500 rounded-md m-2 p-1"
 				>Remove student field</button
 			>
 		</div>

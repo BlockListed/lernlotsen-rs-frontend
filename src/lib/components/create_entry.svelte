@@ -79,7 +79,7 @@
 	}
 </script>
 
-<form on:submit|preventDefault={handle_submit} bind:this={form} class="bg-teal-500 p-4 rounded-md">
+<form on:submit|preventDefault={handle_submit} bind:this={form} class="bg-teal-500 p-4 rounded-md md:w-2/3">
 	<label>
 		Status:
 		<select name="status" bind:value={status} class="rounded p-1">
