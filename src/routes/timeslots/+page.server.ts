@@ -61,14 +61,12 @@ export const actions = {
 			}
 		};
 
-		const resp = await fetch(`${env.API_URL}/timeslots`, {
+		await fetch(`${env.API_URL}/timeslots`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(req)
 		});
-
-		console.log(resp.status, await resp.text());
 	}
 };
