@@ -8,6 +8,6 @@
 	<NavbarItem href="/timeslots">Timeslots</NavbarItem>
 </nav>
 
-<div class="m-5">
+<main class="m-5">
 	<slot />
-</div>
+</main>

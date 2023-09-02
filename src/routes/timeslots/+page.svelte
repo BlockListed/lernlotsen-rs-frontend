@@ -11,7 +11,7 @@
 
 <button
 	on:click={() => (create_visible = !create_visible)}
-	class="bg-slate-500 rounded-md p-2 md:w-2/3 w-full text-xl font-semibold"
+	class="bg-slate-500 rounded-md p-2 lg:w-2/3 w-full text-xl font-semibold"
 	>{create_visible ? 'Hide' : 'Show'}</button
 >
 

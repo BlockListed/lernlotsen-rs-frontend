@@ -31,6 +31,7 @@ export const actions = {
 		const time_end = data.get('time-end');
 		const date = data.get('date-start');
 		const date_end = data.get('date-end');
+		const timezone = data.get('timezone');
 		const students: string[] = [];
 
 		for (;;) {
@@ -58,7 +59,8 @@ export const actions = {
 			timerange: {
 				start: date,
 				end: date_end
-			}
+			},
+			timezone: timezone,
 		};
 
 		await fetch(`${env.API_URL}/timeslots`, {

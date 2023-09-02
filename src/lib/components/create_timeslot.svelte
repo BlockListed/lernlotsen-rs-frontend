@@ -25,6 +25,8 @@
 
 		student_inputs = student_inputs.slice(0, student_inputs.length - 1);
 	}
+
+	const timezones = Intl.supportedValuesOf("timeZone");
 </script>
 
 {#if visible}
@@ -41,7 +43,7 @@
 		}}
 		method="POST"
 		action="?/create"
-		class="flex flex-col bg-slate-300 p-6 rounded-md md:w-2/3"
+		class="flex flex-col bg-slate-300 p-6 rounded-md lg:w-2/3"
 	>
 		<div class="flex md:flex-row flex-col">
 			<div class="flex flex-col mx-2">
@@ -76,6 +78,14 @@
 				<label class="mb-1.5">
 					End Date:
 					<input type="date" name="date-end" class="rounded p-1" />
+				</label>
+				<label>
+					Time Zone:
+					<select name="timezone" class="rounded p-1 w-2/3">
+						{#each timezones as tz}
+							<option value={tz}>{tz}</option>
+						{/each}
+					</select>
 				</label>
 			</div>
 			<div class="flex flex-col mx-2">
