@@ -10,7 +10,7 @@
 <ItemContainer title={`${subject} - ${entry[1]}`}>
 	<div class="flex flex-col">
 		<h2 class="text-xl font-medium">Status: {entry[0].state.status}</h2>
-		{#if entry[0].state.status === "Success"}
+		{#if entry[0].state.status === 'Success'}
 			<table class="table-auto w-2/3">
 				<thead>
 					<tr>
@@ -18,7 +18,7 @@
 						<th class="border border-2 border-slate-900">Status</th>
 					</tr>
 				</thead>
-				
+
 				<tbody>
 					{#each entry[0].state.students as student}
 						<tr>

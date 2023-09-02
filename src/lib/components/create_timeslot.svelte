@@ -80,11 +80,13 @@
 			</div>
 		</div>
 		<div class="flex md:flex-row flex-col">
-			<button on:click|preventDefault={add_student_input} class="grow bg-slate-500 rounded-md m-2 p-1"
-				>Add student field</button
+			<button
+				on:click|preventDefault={add_student_input}
+				class="grow bg-slate-500 rounded-md m-2 p-1">Add student field</button
 			>
-			<button on:click|preventDefault={remove_student_input} class="grow bg-slate-500 rounded-md m-2 p-1"
-				>Remove student field</button
+			<button
+				on:click|preventDefault={remove_student_input}
+				class="grow bg-slate-500 rounded-md m-2 p-1">Remove student field</button
 			>
 		</div>
 		<button class="bg-slate-500 rounded-md m-2 py-1">Submit</button>

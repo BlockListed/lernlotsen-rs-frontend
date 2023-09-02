@@ -1,7 +1,14 @@
 import { API_URL } from '$env/static/private';
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types.js';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async ({ fetch, cookies }) => {
+	const bearer_token = cookies.get("auth_token");
+
+	if (!bearer_token) {
+		throw redirect(302, "/auth/login")
+	}
+
 	const data = await fetch(`${API_URL}/timeslots`);
 
 	if (data.status != 200) {
@@ -12,10 +19,16 @@ export const load: PageServerLoad = async ({ fetch }) => {
 	return {
 		timeslots: await data.json()
 	};
-}
+};
 
 export const actions = {
-	create: async ({ request, fetch }) => {
+	create: async ({ request, fetch, cookies }) => {
+		const bearer_token = cookies.get("auth_token");
+
+		if (!bearer_token) {
+			throw redirect(302, "/auth/login")
+		}
+
 		const data = await request.formData();
 
 		let index = 0;

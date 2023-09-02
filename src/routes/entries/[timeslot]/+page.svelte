@@ -14,7 +14,7 @@
 
 <h2 class="text-2xl font-bold">Missing Entries:</h2>
 {#each missing as missing_entry}
-<MissingEntry entry={missing_entry} timeslot={data.timeslot.msg[0]} />
+	<MissingEntry entry={missing_entry} timeslot={data.timeslot.msg[0]} />
 {/each}
 
 <h2 class="text-2xl font-bold">Entries:</h2>

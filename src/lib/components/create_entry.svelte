@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Student, Timeslot, CreateEntry, EntryState, SuccessState } from "$lib/types";
+	import type { Student, Timeslot, CreateEntry, EntryState, SuccessState } from '$lib/types';
 
 	export let timeslot: Timeslot;
 	export let entry: [number, string];
@@ -9,77 +9,81 @@
 	let status: string;
 
 	async function handle_submit(e: SubmitEvent) {
-		console.log("submitted");
+		console.log('submitted');
 
-		let student_states = form.querySelectorAll("#student_states select");
+		let student_states = form.querySelectorAll('#student_states select');
 
 		let student_statuses: [Student, string][] = [];
 
 		student_states.forEach((s) => {
 			const ele = s as HTMLSelectElement;
 
-			let name = ele.getAttribute("name");
+			let name = ele.getAttribute('name');
 
 			if (!name) {
-				throw new Error("Missing name attribute on select");
+				throw new Error('Missing name attribute on select');
 			}
 
 			let value = ele.selectedOptions[0].value;
 
-			student_statuses.push([{name}, value])
+			student_statuses.push([{ name }, value]);
 		});
 
 		let state: EntryState;
 
-		if (status == "Success") {
+		if (status == 'Success') {
 			state = {
 				status: status,
-				students: student_statuses,
+				students: student_statuses
 			};
-		} else if (status == "CancelledByStudents") {
+		} else if (status == 'CancelledByStudents') {
 			state = {
-				status,
+				status
 			};
-		} else if (status == "StudentsMissing") {
+		} else if (status == 'StudentsMissing') {
 			state = {
-				status,
+				status
 			};
-		} else if (status == "CancelledByTutor") {
+		} else if (status == 'CancelledByTutor') {
 			state = {
-				status,
+				status
 			};
-		} else if (status == "Holidays") {
+		} else if (status == 'Holidays') {
 			state = {
-				status,
+				status
 			};
 		} else {
 			state = {
-				status: "Other",
-			}
+				status: 'Other'
+			};
 		}
 
 		let req: CreateEntry = {
 			index: entry[0],
-			state,
+			state
 		};
 
 		let res = await fetch(`/entries/${timeslot.id}/create`, {
-			method: "POST",
+			method: 'POST',
 			body: JSON.stringify([timeslot.id, req]),
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json'
 			}
 		});
 
 		if (res.status != 200) {
-			throw new Error("Something bad happened");
+			throw new Error('Something bad happened');
 		}
 
 		location.reload();
 	}
 </script>
 
-<form on:submit|preventDefault={handle_submit} bind:this={form} class="bg-teal-500 p-4 rounded-md md:w-2/3">
+<form
+	on:submit|preventDefault={handle_submit}
+	bind:this={form}
+	class="bg-teal-500 p-4 rounded-md md:w-2/3"
+>
 	<label>
 		Status:
 		<select name="status" bind:value={status} class="rounded p-1">
@@ -91,12 +95,12 @@
 			<option value="Other">Other</option>
 		</select>
 	</label>
-	{#if status == "Success"}
-		<h3 class="text-xl font-semibold">Students: </h3>
+	{#if status == 'Success'}
+		<h3 class="text-xl font-semibold">Students:</h3>
 		<div id="student_states">
 			{#each timeslot.students as student}
 				<div class="flex flex-row gap-1">
-					<h4 class="text-lg font-light">{student.name}: </h4>
+					<h4 class="text-lg font-light">{student.name}:</h4>
 					<select name={student.name} class="rounded p-1">
 						<option>Present</option>
 						<option>Pardoned</option>
@@ -110,4 +114,3 @@
 	{/if}
 	<button type="submit" class="bg-slate-500 rounded-md p-1 mt-2">Submit</button>
 </form>
-

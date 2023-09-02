@@ -1,6 +1,11 @@
 import { API_URL } from '$env/static/private';
+import { redirect } from '@sveltejs/kit';
 
-export async function load({ params, fetch }) {
+export async function load({ params, fetch, cookies }) {
+	if (!cookies.get("auth_token")) {
+		throw redirect(302, "/auth/login")
+	}
+
 	const [timeslot_data, data, missing] = await Promise.all([
 		fetch(`${API_URL}/timeslots?id=${params.timeslot}`),
 		fetch(`${API_URL}/timeslots/${params.timeslot}/entries`),
@@ -8,8 +13,8 @@ export async function load({ params, fetch }) {
 	]);
 
 	if (timeslot_data.status != 200) {
-		console.error(timeslot_data.text())
-		throw new Error("error fetch timeslot data");
+		console.error(timeslot_data.text());
+		throw new Error('error fetch timeslot data');
 	}
 
 	if (data.status != 200) {
@@ -19,7 +24,7 @@ export async function load({ params, fetch }) {
 
 	if (missing.status != 200) {
 		console.error(await missing.text());
-		throw new Error("Error fetching missing entries");
+		throw new Error('Error fetching missing entries');
 	}
 
 	return {
@@ -28,4 +33,3 @@ export async function load({ params, fetch }) {
 		missing: await missing.json()
 	};
 }
-
