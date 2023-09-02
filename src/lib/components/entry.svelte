@@ -5,9 +5,11 @@
 	export let entry: [Entry, string];
 
 	export let subject: string;
+
+	$: date = new Date(entry[1]).toLocaleString()
 </script>
 
-<ItemContainer title={`${subject} - ${entry[1]}`}>
+<ItemContainer title={`${subject} - ${date}`}>
 	<div class="flex flex-col">
 		<h2 class="text-xl font-medium">Status: {entry[0].state.status}</h2>
 		{#if entry[0].state.status === 'Success'}
