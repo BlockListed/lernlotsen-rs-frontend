@@ -63,12 +63,17 @@ export const actions = {
 			timezone: timezone,
 		};
 
-		await fetch(`${env.API_URL}/timeslots`, {
+		const resp = await fetch(`${env.API_URL}/timeslots`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(req)
 		});
+
+		if (resp.status != 201) {
+			console.log(await resp.text());
+			throw new Error("unable to create timeslot;")
+		}
 	}
 };
