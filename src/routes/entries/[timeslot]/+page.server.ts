@@ -1,10 +1,8 @@
 import { API_URL } from '$env/static/private';
-import { redirect } from '@sveltejs/kit';
+import { check_auth } from '$lib/auth/0auth.js';
 
 export async function load({ params, fetch, cookies }) {
-	if (!cookies.get("auth_token")) {
-		throw redirect(302, "/auth/login")
-	}
+	check_auth(cookies);
 
 	const [timeslot_data, data, missing] = await Promise.all([
 		fetch(`${API_URL}/timeslots?id=${params.timeslot}`),
