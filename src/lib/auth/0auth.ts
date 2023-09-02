@@ -7,7 +7,7 @@ export function authorization_url(): string {
 }
 
 export function check_auth(cookies: Cookies) {
-	if (!cookies) {
-		throw redirect(302, "/auth/login")
+	if (!cookies.get("auth_token")) {
+		throw redirect(302, "/auth/login");
 	}
 }

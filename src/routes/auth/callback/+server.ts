@@ -38,8 +38,6 @@ export const GET: RequestHandler = async (e) => {
 
 	const redirect = `${url.protocol}//${url.host}/`
 
-	console.log(redirect)
-
 	return new Response("redirecting now", {
 		status: 302,
 		headers: {
