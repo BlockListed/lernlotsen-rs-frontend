@@ -30,7 +30,15 @@
 {#if visible}
 	<form
 		transition:fly={{ x: 200, duration: 200 }}
-		use:enhance
+		use:enhance={() => {
+			return ({ result, update }) => {
+				if (result.type === "success") {
+					location.reload();
+					return;
+				}
+				update();
+			}
+		}}
 		method="POST"
 		action="?/create"
 		class="flex flex-col bg-slate-300 p-6 rounded-md md:w-2/3"
