@@ -1,4 +1,4 @@
-import { AUTH_CLIENT_ID, AUTH_CLIENT_SECRET, AUTH_DOMAIN, AUTH_REDIRECT } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 import type { RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async (e) => {
@@ -8,17 +8,17 @@ export const GET: RequestHandler = async (e) => {
 		throw new Error("Authorization code required!");
 	}
 
-	const token_resp = await fetch(`${AUTH_DOMAIN}/oauth/token`, {
+	const token_resp = await fetch(`${env.AUTH_DOMAIN}/oauth/token`, {
 		method: "POST",
 		headers: {
 			'content-type': 'application/x-www-form-urlencoded',
 		},
 		body: new URLSearchParams({
 			grant_type: 'authorization_code',
-			client_id: AUTH_CLIENT_ID,
-			client_secret: AUTH_CLIENT_SECRET,
+			client_id: env.AUTH_CLIENT_ID,
+			client_secret: env.AUTH_CLIENT_SECRET,
 			code: code,
-			redirect_uri: AUTH_REDIRECT,
+			redirect_uri: env.AUTH_REDIRECT,
 		})
 	});
 

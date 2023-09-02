@@ -1,13 +1,13 @@
-import { API_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { check_auth } from '$lib/auth/0auth.js';
 
 export async function load({ params, fetch, cookies }) {
 	check_auth(cookies);
 
 	const [timeslot_data, data, missing] = await Promise.all([
-		fetch(`${API_URL}/timeslots?id=${params.timeslot}`),
-		fetch(`${API_URL}/timeslots/${params.timeslot}/entries`),
-		fetch(`${API_URL}/timeslots/${params.timeslot}/entries/missing`)
+		fetch(`${env.API_URL}/timeslots?id=${params.timeslot}`),
+		fetch(`${env.API_URL}/timeslots/${params.timeslot}/entries`),
+		fetch(`${env.API_URL}/timeslots/${params.timeslot}/entries/missing`)
 	]);
 
 	if (timeslot_data.status != 200) {

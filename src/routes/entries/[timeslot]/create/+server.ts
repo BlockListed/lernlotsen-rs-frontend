@@ -1,4 +1,4 @@
-import { API_URL } from '$env/static/private';
+import { API_URL } from '$env/dynamic/private';
 import { check_auth } from '$lib/auth/0auth';
 import type { CreateEntry } from '$lib/types/index.js';
 import type { RequestHandler } from '@sveltejs/kit';

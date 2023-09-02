@@ -1,11 +1,11 @@
-import { API_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import type { PageServerLoad } from './$types.js';
 import { check_auth } from '$lib/auth/0auth.js';
 
 export const load: PageServerLoad = async ({ fetch, cookies }) => {
 	check_auth(cookies);
 
-	const data = await fetch(`${API_URL}/timeslots`);
+	const data = await fetch(`${env.API_URL}/timeslots`);
 
 	if (data.status != 200) {
 		console.error(await data.text());
@@ -61,7 +61,7 @@ export const actions = {
 			}
 		};
 
-		const resp = await fetch(`${API_URL}/timeslots`, {
+		const resp = await fetch(`${env.API_URL}/timeslots`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
