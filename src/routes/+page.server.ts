@@ -19,22 +19,35 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 		return fetch(`${env.API_URL}/timeslots/${ts.id}/entries/missing`);
 	});
 
-	const missing = await Promise.all(missing_reqs);
+	const next_reqs = timeslots.map((ts) => {
+		return fetch(`${env.API_URL}/timeslots/${ts.id}/entries/next`);
+	})
 
-	await Promise.all(missing.map(async (r) => {
+	const [missing, next] = await Promise.all([Promise.all(missing_reqs), Promise.all(next_reqs)]);
+
+	const missing_data: [number, string][][] = await Promise.all(missing.map(async (r) => {
 		if (r.status != 200) {
 			console.error(await r.text());
 			throw new Error("Error while fetching missing entries.")
 		}
+
+		return (await r.json()).msg
 	}));
 
-	const missing_entries: [Timeslot, [number, string][]][] = await Promise.all(missing.map(async (r, idx) => {
-		const entries: [number, string][] = (await r.json()).msg;
+	const next_data: [number, string][] = await Promise.all(next.map(async (r) => {
+		if (r.status != 200) {
+			console.error(await r.text());
+			throw new Error("Error while fetching next entry");
+		}
 
-		return [timeslots[idx], entries];
-	}));
+		return (await r.json()).msg
+	}))
+
+	const timeslot_data: [Timeslot, [number, string], [number, string][]][] = timeslots.map((ts, idx) => {
+		return [ts, next_data[idx], missing_data[idx]]
+	})
 
 	return {
-		missing_entries
+		timeslots: timeslot_data,
 	}
 }

@@ -5,11 +5,11 @@
 
 	export let data: PageData;
 
-	$: missing = data.missing_entries;
+	$: timeslots = data.timeslots;
 </script>
 
 <div class="flex flex-col">
-	{#each missing as list_entry}
+	{#each timeslots as list_entry}
 		<span>{JSON.stringify(list_entry)}</span>
 	{/each}
 </div>
