@@ -86,7 +86,7 @@
 >
 	<label>
 		Status:
-		<select name="status" bind:value={status} class="rounded p-1">
+		<select name="status" bind:value={status} class="rounded p-1" required={true}>
 			<option value="Success">Success</option>
 			<option value="CancelledByStudents">Cancelled By Student(s)</option>
 			<option value="StudentsMissing">All Students Missing</option>
@@ -101,7 +101,7 @@
 			{#each timeslot.students as student}
 				<div class="flex flex-row gap-1">
 					<h4 class="text-lg font-light">{student.name}:</h4>
-					<select name={student.name} class="rounded p-1">
+					<select name={student.name} class="rounded p-1" required={true}>
 						<option>Present</option>
 						<option>Pardoned</option>
 						<option>Missing</option>

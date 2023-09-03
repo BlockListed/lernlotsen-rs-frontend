@@ -49,11 +49,11 @@
 			<div class="flex flex-col mx-2">
 				<label class="mb-1.5">
 					Subject:
-					<input type="text" name="subject" class="rounded p-1" />
+					<input type="text" name="subject" class="rounded p-1" required={true} />
 				</label>
 				<label class="mb-1.5">
 					Weekday:
-					<select name="weekday" class="rounded p-1">
+					<select name="weekday" class="rounded p-1" required={true} >
 						<option value="mon">Monday</option>
 						<option value="tue">Tuesday</option>
 						<option value="wed">Wednesday</option>
@@ -65,23 +65,23 @@
 				</label>
 				<label class="mb-1.5">
 					Start Time:
-					<input type="time" name="time-start" class="rounded p-1" />
+					<input type="time" name="time-start" class="rounded p-1" required={true} />
 				</label>
 				<label class="mb-1.5">
 					End Time:
-					<input type="time" name="time-end" class="rounded p-1" />
+					<input type="time" name="time-end" class="rounded p-1" required={true} />
 				</label>
 				<label class="mb-1.5">
 					Start Date:
-					<input type="date" name="date-start" class="rounded p-1" />
+					<input type="date" name="date-start" class="rounded p-1" required={true} />
 				</label>
 				<label class="mb-1.5">
 					End Date:
-					<input type="date" name="date-end" class="rounded p-1" />
+					<input type="date" name="date-end" class="rounded p-1" required={true} />
 				</label>
 				<label>
 					Time Zone:
-					<select name="timezone" class="rounded p-1 w-2/3">
+					<select name="timezone" class="rounded p-1 w-2/3" required={true} >
 						{#each timezones as tz}
 							<option value={tz}>{tz}</option>
 						{/each}
@@ -92,7 +92,7 @@
 				{#each student_inputs as name, i}
 					<label>
 						Student {i + 1}:
-						<input type="text" class="mb-1.5 rounded p-1" {name} />
+						<input type="text" class="mb-1.5 rounded p-1" {name} required={true} />
 					</label>
 				{/each}
 			</div>
