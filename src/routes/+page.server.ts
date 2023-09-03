@@ -34,17 +34,23 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 		return (await r.json()).msg
 	}));
 
-	const next_data: [number, string][] = await Promise.all(next.map(async (r) => {
+	const next_data: [number, Date][] = await Promise.all(next.map(async (r) => {
 		if (r.status != 200) {
 			console.error(await r.text());
 			throw new Error("Error while fetching next entry");
 		}
 
-		return (await r.json()).msg
+		const [n, date]: [number, string] = (await r.json()).msg
+
+		return [n, new Date(date)]
 	}))
 
-	const timeslot_data: [Timeslot, [number, string], [number, string][]][] = timeslots.map((ts, idx) => {
+	const timeslot_data: [Timeslot, [number, Date], [number, string][]][] = timeslots.map((ts, idx) => {
 		return [ts, next_data[idx], missing_data[idx]]
+	})
+
+	timeslot_data.sort((a, b) => {
+		return a[1][1].getMilliseconds() - b[1][1].getMilliseconds();
 	})
 
 	return {

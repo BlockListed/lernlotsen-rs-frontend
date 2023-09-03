@@ -1,6 +1,6 @@
 <script lang="ts">
 	import CreateTimeslot from '$lib/components/create_timeslot.svelte';
-	import Timeslot from '$lib/components/timeslot.svelte';
+	import TimeslotContained from '$lib/components/timeslot_contained.svelte';
 
 	export let data;
 
@@ -18,5 +18,5 @@
 <CreateTimeslot visible={create_visible} />
 
 {#each timeslots as timeslot}
-	<Timeslot {timeslot} />
+	<TimeslotContained {timeslot} />
 {/each}
