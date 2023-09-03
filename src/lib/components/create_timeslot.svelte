@@ -26,7 +26,7 @@
 		student_inputs = student_inputs.slice(0, student_inputs.length - 1);
 	}
 
-	const timezones = Intl.supportedValuesOf("timeZone");
+	const timezones = Intl.supportedValuesOf('timeZone');
 </script>
 
 {#if visible}
@@ -34,12 +34,12 @@
 		transition:fly={{ x: 200, duration: 200 }}
 		use:enhance={() => {
 			return ({ result, update }) => {
-				if (result.type === "success") {
+				if (result.type === 'success') {
 					location.reload();
 					return;
 				}
 				update();
-			}
+			};
 		}}
 		method="POST"
 		action="?/create"

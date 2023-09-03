@@ -21,15 +21,17 @@
 
 <div class="flex flex-col">
 	{#each timeslots as list_entry}
-	<a href={`/entries/${list_entry[0].id}/`}>
+		<a href={`/entries/${list_entry[0].id}/`}>
 			<ItemContainer title={`${list_entry[0].subject} - ${list_entry[0].weekday}`}>
 				<div class="flex flex-col">
-					<Timeslot timeslot={list_entry[0]}/>
+					<Timeslot timeslot={list_entry[0]} />
 					<div>
 						<h2 class="text-xl font-semibold inline">Next date:</h2>
 						<span class="inline">{list_entry[1][1].toLocaleString()}</span>
 					</div>
-					<span>{list_entry[2].length} {list_entry[2].length == 1 ? "entry" : "entries"} missing.</span>
+					<span
+						>{list_entry[2].length} {list_entry[2].length == 1 ? 'entry' : 'entries'} missing.</span
+					>
 				</div>
 			</ItemContainer>
 		</a>

@@ -6,7 +6,7 @@
 
 	export let subject: string;
 
-	$: date = new Date(entry[1]).toLocaleString()
+	$: date = new Date(entry[1]).toLocaleString();
 </script>
 
 <ItemContainer title={`${subject} - ${date}`}>
