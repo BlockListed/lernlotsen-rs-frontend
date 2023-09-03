@@ -8,6 +8,10 @@ export function authorization_url(): string {
 
 export function check_auth(cookies: Cookies) {
 	if (!cookies.get('auth_token')) {
-		throw redirect(302, '/auth/login');
+		redirect_auth();
 	}
+}
+
+export function redirect_auth() {
+	throw redirect(302, '/auth/login');
 }

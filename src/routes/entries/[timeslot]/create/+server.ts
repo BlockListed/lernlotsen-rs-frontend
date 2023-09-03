@@ -18,7 +18,9 @@ export const POST: RequestHandler = async ({ fetch, request, cookies }) => {
 
 	if (res.status != 201) {
 		console.error(await res.text());
-		throw new Error("Couldn't complete entry creation request");
+		return new Response(await res.text(), {
+			status: res.status,
+		})
 	}
 
 	return new Response('Success');

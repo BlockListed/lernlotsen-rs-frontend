@@ -1,5 +1,6 @@
 import { env } from '$env/dynamic/private';
 import { check_auth } from '$lib/auth/0auth';
+import { verify_status } from '$lib/http/status';
 import type { Timeslot } from '$lib/types';
 import type { PageServerLoad } from './$types';
 
@@ -8,10 +9,7 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 
 	const timeslots_req = await fetch(`${env.API_URL}/timeslots`);
 
-	if (timeslots_req.status != 200) {
-		console.error(await timeslots_req.text());
-		throw new Error('Error while fetching timeslots.');
-	}
+	await verify_status(timeslots_req);
 
 	const timeslots: Timeslot[] = (await timeslots_req.json()).msg;
 
@@ -27,10 +25,7 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 
 	const missing_data: [number, string][][] = await Promise.all(
 		missing.map(async (r) => {
-			if (r.status != 200) {
-				console.error(await r.text());
-				throw new Error('Error while fetching missing entries.');
-			}
+			await verify_status(r);
 
 			return (await r.json()).msg;
 		})
@@ -38,11 +33,8 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 
 	const next_data: [number, Date][] = await Promise.all(
 		next.map(async (r) => {
-			if (r.status != 200) {
-				console.error(await r.text());
-				throw new Error('Error while fetching next entry');
-			}
-
+			await verify_status(r);
+			
 			const [n, date]: [number, string] = (await r.json()).msg;
 
 			return [n, new Date(date)];
