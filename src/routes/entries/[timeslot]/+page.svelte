@@ -20,7 +20,7 @@
 {:else}
 	{#if missing.length != 0}
 		<h2 class="text-2xl font-bold">Missing Entries:</h2>
-		{#each missing as missing_entry}
+		{#each missing as missing_entry (missing_entry[1])}
 			<MissingEntry entry={missing_entry} timeslot={data.timeslot.msg[0]} />
 		{/each}
 	{/if}

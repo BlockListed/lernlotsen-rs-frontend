@@ -2,8 +2,10 @@ import { env } from '$env/dynamic/private';
 import { check_auth } from '$lib/auth/0auth.js';
 import { verify_status } from '$lib/http/status.js';
 
-export async function load({ params, fetch, cookies }) {
+export async function load({ params, fetch, cookies, depends }) {
 	check_auth(cookies);
+
+	depends("app:entries");
 
 	const [timeslot_data, data, missing] = await Promise.all([
 		fetch(`${env.API_URL}/timeslots?id=${params.timeslot}`),

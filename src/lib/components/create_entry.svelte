@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidate } from '$app/navigation';
 	import type { Student, Timeslot, CreateEntry, EntryState, SuccessState } from '$lib/types';
 
 	export let timeslot: Timeslot;
@@ -75,7 +76,7 @@
 			throw new Error('Something bad happened');
 		}
 
-		location.reload();
+		invalidate("app:entries");
 	}
 </script>
 
