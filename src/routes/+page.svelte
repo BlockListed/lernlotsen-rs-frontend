@@ -1,4 +1,6 @@
 <script lang="ts">
+	import TiExportOutline from 'svelte-icons/ti/TiExportOutline.svelte'
+
 	import type { PageData } from './$types';
 	import ItemContainer from '$lib/components/item_container.svelte';
 	import Timeslot from '$lib/components/timeslot.svelte';
@@ -11,11 +13,16 @@
 	let create_visible = false;
 </script>
 
-<button
-	on:click={() => (create_visible = !create_visible)}
-	class="bg-slate-500 rounded-md p-2 lg:w-2/3 w-full text-xl font-semibold"
-	>{create_visible ? 'Hide' : 'Show'}</button
->
+<div class="flex flex-row lg:w-2/3 w-full">
+	<button
+		on:click={() => (create_visible = !create_visible)}
+		class="bg-slate-500 rounded-md p-2 grow text-xl font-semibold"
+		>{create_visible ? 'Hide' : 'Show'}</button
+	>
+	<div class="w-20">
+		<a href="/export"><TiExportOutline /></a>
+	</div>
+</div>
 
 <CreateTimeslot visible={create_visible} />
 
