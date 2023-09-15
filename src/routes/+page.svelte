@@ -1,5 +1,6 @@
 <script lang="ts">
-	import TiExportOutline from 'svelte-icons/ti/TiExportOutline.svelte'
+	import { onMount } from 'svelte';
+	import TiExportOutline from 'svelte-icons/ti/TiExportOutline.svelte';
 
 	import type { PageData } from './$types';
 	import ItemContainer from '$lib/components/item_container.svelte';
@@ -14,6 +15,18 @@
 	let create_visible = false;
 
 	let export_dialog: HTMLDialogElement;
+	
+	onMount(() => {
+		export_dialog.addEventListener('click', (e) => {
+			const rect = export_dialog.getBoundingClientRect();
+
+			let in_box = e.x > rect.left && e.x < rect.right && e.y > rect.top && e.y < rect.bottom;
+
+			if (!in_box) {
+				export_dialog.close();
+			} 
+		})
+	})
 </script>
 
 <div class="flex flex-row lg:w-2/3 w-full">
