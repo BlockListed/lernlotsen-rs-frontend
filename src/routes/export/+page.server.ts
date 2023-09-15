@@ -21,6 +21,10 @@ export const load: PageServerLoad = async ({ cookies, fetch, url }) => {
 
 	const export_req = await fetch(`${env.API_URL}/timeslots/export?${new URLSearchParams({ start_year, start_week, end_year, end_week }).toString()}`);
 
+	if (export_req.status == 428) {
+		throw error(428, "no entries in range can be missing");
+	}
+
 	await verify_status(export_req);
 
 	const export_str: string = (await export_req.json()).msg;

@@ -5,12 +5,15 @@
 	import ItemContainer from '$lib/components/item_container.svelte';
 	import Timeslot from '$lib/components/timeslot.svelte';
 	import CreateTimeslot from '$lib/components/create_timeslot.svelte';
+	import ExportSelect from '$lib/components/export_select.svelte';
 
 	export let data: PageData;
 
 	$: timeslots = data.timeslots;
 
 	let create_visible = false;
+
+	let export_dialog: HTMLDialogElement;
 </script>
 
 <div class="flex flex-row lg:w-2/3 w-full">
@@ -20,8 +23,11 @@
 		>{create_visible ? 'Hide' : 'Show'}</button
 	>
 	<div class="w-20">
-		<a href="/export"><TiExportOutline /></a>
+		<button on:click={() => export_dialog.showModal()}><TiExportOutline /></button>
 	</div>
+	<dialog bind:this={export_dialog} class="p-8 rounded-lg">
+		<ExportSelect timeslots={timeslots.map((ts) => ts[0])} />
+	</dialog>
 </div>
 
 <CreateTimeslot visible={create_visible} />
