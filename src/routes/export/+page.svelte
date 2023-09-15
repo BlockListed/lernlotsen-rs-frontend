@@ -6,7 +6,9 @@
 	export let data: PageData;
 </script>
 
-<ExportSelect timeslots={[]} />
-<pre class="m-2 bg-slate-300">
+<div class="md:w-2/3">
+	<ExportSelect timeslots={[]} />
+</div>
+<pre class="m-2 bg-slate-300 md:w-2/3">
 {data.export}
 </pre>

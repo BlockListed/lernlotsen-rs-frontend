@@ -73,7 +73,7 @@
 </script>
 
 <div class="flex flex-col bg-sky-400 p-4 rounded-md space-y-4" on:keypress={submit} role="form">
-	<div class="flex flex-row space-x-4">
+	<div class="flex flex-col md:flex-row space-x-4 md:space-y-0 space-y-4">
 		<div class="flex flex-col space-y-4">
 			<label>
 				Start Year:
