@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { PageData } from "./$types";
+	import type { PageData } from './$types';
 
-	import ExportSelect from "$lib/components/export_select.svelte";
+	import ExportSelect from '$lib/components/export_select.svelte';
 
 	export let data: PageData;
 </script>

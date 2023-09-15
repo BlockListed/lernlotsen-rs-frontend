@@ -15,18 +15,16 @@
 	let create_visible = false;
 
 	let export_dialog: HTMLDialogElement;
-	
-	onMount(() => {
-		export_dialog.addEventListener('click', (e) => {
-			const rect = export_dialog.getBoundingClientRect();
 
-			let in_box = e.x > rect.left && e.x < rect.right && e.y > rect.top && e.y < rect.bottom;
+	function hide_dialog(e: MouseEvent) {
+		const rect = export_dialog.getBoundingClientRect();
 
-			if (!in_box) {
-				export_dialog.close();
-			} 
-		})
-	})
+		let in_box = e.x > rect.left && e.x < rect.right && e.y > rect.top && e.y < rect.bottom;
+
+		if (!in_box) {
+			export_dialog.close();
+		}
+	}
 </script>
 
 <div class="flex flex-row lg:w-2/3 w-full">
@@ -38,7 +36,11 @@
 	<div class="w-20 text-sky-500">
 		<button on:click={() => export_dialog.showModal()}><TiExportOutline /></button>
 	</div>
-	<dialog bind:this={export_dialog} class="rounded-lg p-4 backdrop:backdrop-blur">
+	<dialog
+		bind:this={export_dialog}
+		on:click={hide_dialog}
+		class="rounded-lg p-4 backdrop:backdrop-blur"
+	>
 		<ExportSelect timeslots={timeslots.map((ts) => ts[0])} />
 	</dialog>
 </div>

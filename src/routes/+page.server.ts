@@ -34,7 +34,7 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	const next_data: [number, Date][] = await Promise.all(
 		next.map(async (r) => {
 			await verify_status(r);
-			
+
 			const [n, date]: [number, string] = (await r.json()).msg;
 
 			return [n, new Date(date)];
@@ -99,7 +99,7 @@ export const actions = {
 				start: date,
 				end: date_end
 			},
-			timezone: timezone,
+			timezone: timezone
 		};
 
 		const resp = await fetch(`${env.API_URL}/timeslots`, {

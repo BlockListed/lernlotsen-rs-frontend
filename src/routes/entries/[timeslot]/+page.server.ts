@@ -5,7 +5,7 @@ import { verify_status } from '$lib/http/status.js';
 export async function load({ params, fetch, cookies, depends }) {
 	check_auth(cookies);
 
-	depends("app:entries");
+	depends('app:entries');
 
 	const [timeslot_data, data, missing] = await Promise.all([
 		fetch(`${env.API_URL}/timeslots?id=${params.timeslot}`),

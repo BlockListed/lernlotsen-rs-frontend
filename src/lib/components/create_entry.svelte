@@ -76,7 +76,7 @@
 			throw new Error('Something bad happened');
 		}
 
-		invalidate("app:entries");
+		invalidate('app:entries');
 	}
 </script>
 

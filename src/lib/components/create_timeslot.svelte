@@ -53,7 +53,7 @@
 				</label>
 				<label class="mb-1.5">
 					Weekday:
-					<select name="weekday" class="rounded p-1" required={true} >
+					<select name="weekday" class="rounded p-1" required={true}>
 						<option value="mon">Monday</option>
 						<option value="tue">Tuesday</option>
 						<option value="wed">Wednesday</option>
@@ -81,7 +81,7 @@
 				</label>
 				<label>
 					Time Zone:
-					<select name="timezone" class="rounded p-1 w-2/3" required={true} >
+					<select name="timezone" class="rounded p-1 w-2/3" required={true}>
 						{#each timezones as tz}
 							<option value={tz}>{tz}</option>
 						{/each}

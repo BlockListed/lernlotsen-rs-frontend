@@ -19,8 +19,8 @@ export const POST: RequestHandler = async ({ fetch, request, cookies }) => {
 	if (res.status != 201) {
 		console.error(await res.text());
 		return new Response(await res.text(), {
-			status: res.status,
-		})
+			status: res.status
+		});
 	}
 
 	return new Response('Success');
