@@ -4,7 +4,7 @@
 </script>
 
 <a href="/">
-	<nav class="flex flex-row justify-start bg-slate-500 h-10 justify-center items-center">
+	<nav class="flex flex-row justify-start bg-sky-600 h-10 justify-center items-center">
 		<h2 class="text-center text-xl font-bold">Lernlotsen</h2>
 	</nav>
 </a>

@@ -43,7 +43,7 @@
 		}}
 		method="POST"
 		action="?/create"
-		class="flex flex-col bg-slate-300 p-6 rounded-md lg:w-2/3"
+		class="flex flex-col bg-sky-400 p-6 rounded-md lg:w-2/3"
 	>
 		<div class="flex md:flex-row flex-col">
 			<div class="flex flex-col mx-2">

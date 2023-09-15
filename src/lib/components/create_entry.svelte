@@ -83,7 +83,7 @@
 <form
 	on:submit|preventDefault={handle_submit}
 	bind:this={form}
-	class="bg-teal-500 p-4 rounded-md lg:w-2/3"
+	class="bg-sky-400 p-4 rounded-md lg:w-2/3"
 >
 	<label>
 		Status:

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import dayjs from 'dayjs';
 	import isoWeek from 'dayjs/plugin/isoWeek';
 
@@ -9,11 +10,11 @@
 
 	export let timeslots: Timeslot[];
 
-	let start_year: number = dayjs().year();
-	let start_week: number = default_start_week();
+	let start_year: number = parseInt($page.url.searchParams.get("start_year") || dayjs().year().toString());
+	let start_week: number = parseInt($page.url.searchParams.get("start_week") || default_start_week().toString());
 
-	let end_year: number = dayjs().year();
-	let end_week: number = dayjs().isoWeek();
+	let end_year: number = parseInt($page.url.searchParams.get("end_year") || dayjs().year().toString());
+	let end_week: number = parseInt($page.url.searchParams.get("end_week") || dayjs().isoWeek().toString());
 
 	function default_start_week(): number {
 		let default_start_week = timeslots.reduce((acc, ts) => {
@@ -47,7 +48,7 @@
 	$: link = createLink(start_year, start_week, end_year, end_week);
 </script>
 
-<div class="flex flex-col bg-slate-300 p-4 rounded-md space-y-4">
+<div class="flex flex-col bg-sky-400 p-4 rounded-md space-y-4">
 	<div class="flex flex-row space-x-4">
 		<div class="flex flex-col space-y-4">
 			<label>

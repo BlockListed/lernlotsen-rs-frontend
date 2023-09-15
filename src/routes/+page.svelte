@@ -19,13 +19,13 @@
 <div class="flex flex-row lg:w-2/3 w-full">
 	<button
 		on:click={() => (create_visible = !create_visible)}
-		class="bg-slate-500 rounded-md p-2 grow text-xl font-semibold"
+		class="bg-sky-500 rounded-md p-2 grow text-xl font-semibold"
 		>{create_visible ? 'Hide' : 'Show'}</button
 	>
-	<div class="w-20">
+	<div class="w-20 text-sky-500">
 		<button on:click={() => export_dialog.showModal()}><TiExportOutline /></button>
 	</div>
-	<dialog bind:this={export_dialog} class="rounded-lg p-4">
+	<dialog bind:this={export_dialog} class="rounded-lg p-4 backdrop:backdrop-blur">
 		<ExportSelect timeslots={timeslots.map((ts) => ts[0])} />
 	</dialog>
 </div>
