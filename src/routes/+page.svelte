@@ -25,7 +25,7 @@
 	<div class="w-20">
 		<button on:click={() => export_dialog.showModal()}><TiExportOutline /></button>
 	</div>
-	<dialog bind:this={export_dialog} class="p-8 rounded-lg">
+	<dialog bind:this={export_dialog} class="rounded-lg p-4">
 		<ExportSelect timeslots={timeslots.map((ts) => ts[0])} />
 	</dialog>
 </div>

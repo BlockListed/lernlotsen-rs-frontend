@@ -47,8 +47,8 @@
 	$: link = createLink(start_year, start_week, end_year, end_week);
 </script>
 
-<div class="flex flex-col">
-	<div class="flex flex-row">
+<div class="flex flex-col bg-slate-300 p-4 rounded-md space-y-4">
+	<div class="flex flex-row space-x-4">
 		<div class="flex flex-col space-y-4">
 			<label>
 				Start Year:
@@ -74,7 +74,7 @@
 		</div>
 	</div>
 
-	<a href={link} data-sveltekit-preload-data="off">
+	<a href={link} data-sveltekit-preload-data="off" class="bg-slate-400">
 		{link}
 	</a>
 </div>
