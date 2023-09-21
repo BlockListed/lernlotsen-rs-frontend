@@ -58,7 +58,7 @@
 						<span class="inline">{list_entry[1][1].toLocaleString()}</span>
 					</div>
 					<span
-						>{list_entry[2].length} {list_entry[2].length == 1 ? 'entry' : 'entries'} missing.</span
+						>{list_entry[2]} {list_entry[2] == 1 ? 'entry' : 'entries'} missing.</span
 					>
 				</div>
 			</ItemContainer>
