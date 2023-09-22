@@ -7,16 +7,16 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	check_auth(cookies);
 
-	const timeslots_req = await fetch(`${env.API_URL}/timeslots/home_information`);
+	const timeslots_req = await fetch(`${env.API_URL}/timeslots/information`);
 	
 	await verify_status(timeslots_req);
 
-	const info: [Timeslot, [number, Date], [number, string][]][] = (await timeslots_req.json()).msg;
+	const info: [Timeslot, [number, Date], number][] = (await timeslots_req.json()).msg;
 
 	const timeslot_data: [Timeslot, [number, Date], number][] = info.map((v) => {
 		const ts = v[0];
 		const next: [number, Date] = [v[1][0], new Date(v[1][1])];
-		const missing_count = v[2].length;
+		const missing_count = v[2];
 		return [ts, next, missing_count]
 	});
 
