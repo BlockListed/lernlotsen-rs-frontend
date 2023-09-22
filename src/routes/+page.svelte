@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import TiExportOutline from 'svelte-icons/ti/TiExportOutline.svelte';
 
 	import type { PageData } from './$types';
