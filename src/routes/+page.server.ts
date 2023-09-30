@@ -21,7 +21,9 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	});
 
 	timeslot_data.sort((a, b) => {
-		return a[1][1].getMilliseconds() - b[1][1].getMilliseconds();
+		const a_next = +a[1][1];
+		const b_next = +b[1][1];
+		return a_next - b_next;
 	});
 
 	return {
