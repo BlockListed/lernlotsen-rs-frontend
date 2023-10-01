@@ -40,7 +40,7 @@
 		on:click={hide_dialog}
 		class="rounded-lg p-4 backdrop:backdrop-blur"
 	>
-		<ExportSelect timeslots={timeslots.map((ts) => ts[0])} />
+		<ExportSelect timeslots={timeslots.map((ts) => ts.ts)} />
 	</dialog>
 </div>
 
@@ -48,16 +48,16 @@
 
 <div class="flex flex-col">
 	{#each timeslots as list_entry}
-		<a href={`/entries/${list_entry[0].id}/`}>
-			<ItemContainer title={`${list_entry[0].subject} - ${list_entry[0].weekday}`}>
+		<a href={`/entries/${list_entry.ts.id}/`}>
+			<ItemContainer title={`${list_entry.ts.subject} - ${list_entry.ts.weekday}`}>
 				<div class="flex flex-col">
-					<Timeslot timeslot={list_entry[0]} />
+					<Timeslot timeslot={list_entry.ts} />
 					<div>
 						<h2 class="text-xl font-semibold inline">Next date:</h2>
-						<span class="inline">{list_entry[1][1].toLocaleString()}</span>
+						<span class="inline">{list_entry.next[1].toLocaleString()}</span>
 					</div>
 					<span
-						>{list_entry[2]} {list_entry[2] == 1 ? 'entry' : 'entries'} missing.</span
+						>{list_entry.missing} {list_entry.missing == 1 ? 'entry' : 'entries'} missing.</span
 					>
 				</div>
 			</ItemContainer>
