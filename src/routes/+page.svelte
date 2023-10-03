@@ -54,7 +54,7 @@
 					<Timeslot timeslot={list_entry.ts} />
 					<div>
 						<h2 class="text-xl font-semibold inline">Next date:</h2>
-						<span class="inline">{list_entry.next[1].toLocaleString()}</span>
+						<span class="inline">{list_entry.next.timestamp.toLocaleString()}</span>
 					</div>
 					<span
 						>{list_entry.missing} {list_entry.missing == 1 ? 'entry' : 'entries'} missing.</span

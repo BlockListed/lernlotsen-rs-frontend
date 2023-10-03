@@ -7,24 +7,22 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	check_auth(cookies);
 
-	const timeslots_req = await fetch(`${env.API_URL}/v2/timeslots/information`);
+	const timeslots_req = await fetch(`${env.API_URL}/v3/timeslots/information`);
 	
 	await verify_status(timeslots_req);
 
-	const info: {ts: Timeslot, next: [number, Date], missing: number}[] = (await timeslots_req.json()).msg;
+	const info: {ts: Timeslot, next: { index: number, timestamp: string }, missing: number}[] = (await timeslots_req.json()).msg;
 
-	console.log(info);
-
-	const timeslot_data: {ts: Timeslot, next: [number, Date], missing: number}[] = info.map((v) => {
+	const timeslot_data: {ts: Timeslot, next: { index: number, timestamp: Date }, missing: number}[] = info.map((v) => {
 		const ts = v.ts;
-		const next: [number, Date] = [v.next[0], new Date(v.next[1])];
+		const next = {index: v.next.index, timestamp: new Date(v.next.timestamp)};
 		const missing = v.missing;
 		return {ts, next, missing}
 	});
 
 	timeslot_data.sort((a, b) => {
-		const a_next = +a.next[1];
-		const b_next = +b.next[1];
+		const a_next = +a.next.timestamp;
+		const b_next = +b.next.timestamp;
 		return a_next - b_next;
 	});
 
