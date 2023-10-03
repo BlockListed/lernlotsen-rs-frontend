@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { invalidate } from '$app/navigation';
-	import type { Student, Timeslot, CreateEntry, EntryState, SuccessState } from '$lib/types';
+	import type { Student, Timeslot, CreateEntry, EntryState, SuccessState, UnfilledEntry } from '$lib/types';
 
 	export let timeslot: Timeslot;
-	export let entry: [number, string];
+	export let entry: UnfilledEntry;
 
 	let form: HTMLFormElement;
 
@@ -60,7 +60,7 @@
 		}
 
 		let req: CreateEntry = {
-			index: entry[0],
+			index: entry.index,
 			state
 		};
 

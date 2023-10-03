@@ -1,12 +1,12 @@
 <script lang="ts">
 	import ItemContainer from './item_container.svelte';
-	import type { Timeslot } from '$lib/types';
+	import type { Timeslot, UnfilledEntry } from '$lib/types';
 	import CreateEntry from './create_entry.svelte';
 
-	export let entry: [number, string];
+	export let entry: UnfilledEntry;
 	export let timeslot: Timeslot;
 
-	$: date = new Date(entry[1]).toLocaleString();
+	$: date = new Date(entry.timestamp).toLocaleString();
 </script>
 
 <ItemContainer title={date}>
