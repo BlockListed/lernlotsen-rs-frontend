@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { check_auth } from '$lib/auth/0auth.js';
 import { verify_status } from '$lib/http/status.js';
-import type { Entry, Timeslot, UnfilledEntry } from '$lib/types/index.js';
+import type { Entry, EntryReturn, Timeslot, UnfilledEntry } from '$lib/types/index.js';
 
 export async function load({ params, fetch, cookies, depends }) {
 	check_auth(cookies);
@@ -10,7 +10,7 @@ export async function load({ params, fetch, cookies, depends }) {
 
 	const [timeslot_data, entry_data, missing_data] = await Promise.all([
 		fetch(`${env.API_URL}/timeslots?id=${params.timeslot}`),
-		fetch(`${env.API_URL}/timeslots/${params.timeslot}/entries`),
+		fetch(`${env.API_URL}/v3/timeslots/${params.timeslot}/entries`),
 		fetch(`${env.API_URL}/v3/timeslots/${params.timeslot}/entries/missing`)
 	]);
 
@@ -18,8 +18,12 @@ export async function load({ params, fetch, cookies, depends }) {
 	await verify_status(entry_data);
 	await verify_status(missing_data);
 
-	const data: {entries: [Entry, string][], timeslot: Timeslot, missing: UnfilledEntry[]} = {
-		entries: (await entry_data.json()).msg,
+	const data: {entries: EntryReturn[], timeslot: Timeslot, missing: UnfilledEntry[]} = {
+		entries: (await entry_data.json()).msg.map((e: EntryReturn) => {
+			e.timestamp = new Date(e.timestamp);
+
+			return e;
+		}),
 		timeslot: (await timeslot_data.json()).msg[0],
 		missing: (await missing_data.json()).msg,
 	};

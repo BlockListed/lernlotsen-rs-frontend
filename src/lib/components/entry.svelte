@@ -1,18 +1,16 @@
 <script lang="ts">
-	import type { Entry } from '$lib/types';
+	import type { Entry, EntryReturn } from '$lib/types';
 	import ItemContainer from './item_container.svelte';
 
-	export let entry: [Entry, string];
+	export let entry: EntryReturn;
 
 	export let subject: string;
-
-	$: date = new Date(entry[1]).toLocaleString();
 </script>
 
-<ItemContainer title={`${subject} - ${date}`}>
+<ItemContainer title={`${subject} - ${entry.timestamp.toLocaleString()}`}>
 	<div class="flex flex-col">
-		<h2 class="text-xl font-medium">Status: {entry[0].state.status}</h2>
-		{#if entry[0].state.status === 'Success'}
+		<h2 class="text-xl font-medium">Status: {entry.entry.state.status}</h2>
+		{#if entry.entry.state.status === 'Success'}
 			<table class="table-auto w-2/3">
 				<thead>
 					<tr>
@@ -22,7 +20,7 @@
 				</thead>
 
 				<tbody>
-					{#each entry[0].state.students as student}
+					{#each entry.entry.state.students as student}
 						<tr>
 							<td class="border border-2 border-slate-700">{student[0].name}</td>
 							<td class="border border-2 border-slate-700">{student[1]}</td>

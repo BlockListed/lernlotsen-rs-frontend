@@ -60,6 +60,11 @@ export interface CreateEntry {
 	index: number;
 }
 
+export interface EntryReturn {
+	entry: Entry;
+	timestamp: string | Date;
+}
+
 export interface UnfilledEntry {
 	index: number;
 	timestamp: string | Date;
