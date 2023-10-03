@@ -7,7 +7,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	check_auth(cookies);
 
-	const timeslots_req = await fetch(`${env.API_URL}/v3/timeslots/information`);
+	const timeslots_req = await fetch(`${env.API_URL}/timeslots/information`);
 	
 	await verify_status(timeslots_req);
 

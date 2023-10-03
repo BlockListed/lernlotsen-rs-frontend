@@ -10,8 +10,8 @@ export async function load({ params, fetch, cookies, depends }) {
 
 	const [timeslot_data, entry_data, missing_data] = await Promise.all([
 		fetch(`${env.API_URL}/timeslots?id=${params.timeslot}`),
-		fetch(`${env.API_URL}/v3/timeslots/${params.timeslot}/entries`),
-		fetch(`${env.API_URL}/v3/timeslots/${params.timeslot}/entries/missing`)
+		fetch(`${env.API_URL}/timeslots/${params.timeslot}/entries`),
+		fetch(`${env.API_URL}/timeslots/${params.timeslot}/entries/missing`)
 	]);
 
 	await verify_status(timeslot_data);
