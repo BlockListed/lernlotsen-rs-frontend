@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { check_auth } from '$lib/auth/0auth';
 import { verify_status } from '$lib/http/status';
-import type { Timeslot } from '$lib/types';
+import type { InformationV3 } from '$lib/types';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ cookies, fetch }) => {
@@ -11,13 +11,11 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	
 	await verify_status(timeslots_req);
 
-	const info: {ts: Timeslot, next: { index: number, timestamp: string }, missing: number}[] = (await timeslots_req.json()).msg;
+	const info: InformationV3 = (await timeslots_req.json()).msg;
 
-	const timeslot_data: {ts: Timeslot, next: { index: number, timestamp: Date }, missing: number}[] = info.map((v) => {
-		const ts = v.ts;
-		const next = {index: v.next.index, timestamp: new Date(v.next.timestamp)};
-		const missing = v.missing;
-		return {ts, next, missing}
+	const timeslot_data: InformationV3 = info.map((v) => {
+		v.next.timestamp = new Date(v.next.timestamp);
+		return v;
 	});
 
 	timeslot_data.sort((a, b) => {

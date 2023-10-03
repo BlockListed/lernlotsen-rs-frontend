@@ -59,3 +59,16 @@ export interface CreateEntry {
 	state: EntryState;
 	index: number;
 }
+
+export interface UnfilledEntry {
+	index: number;
+	timestamp: string | Date;
+}
+
+export interface InformationV3Item {
+	ts: Timeslot,
+	next: UnfilledEntry,
+	missing: number,
+}
+
+export type InformationV3 = InformationV3Item[];
