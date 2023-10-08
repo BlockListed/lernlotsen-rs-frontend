@@ -71,9 +71,9 @@ export interface UnfilledEntry {
 }
 
 export interface InformationV3Item {
-	ts: Timeslot,
-	next: UnfilledEntry,
-	missing: number,
+	ts: Timeslot;
+	next: UnfilledEntry;
+	missing: number;
 }
 
 export type InformationV3 = InformationV3Item[];

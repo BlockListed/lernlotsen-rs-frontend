@@ -1,5 +1,4 @@
 <script>
-	import NavbarItem from '$lib/components/util/navbar_item.svelte';
 	import '../app.css';
 </script>
 

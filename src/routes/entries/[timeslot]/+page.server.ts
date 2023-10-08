@@ -18,14 +18,14 @@ export async function load({ params, fetch, cookies, depends }) {
 	await verify_status(entry_data);
 	await verify_status(missing_data);
 
-	const data: {entries: EntryReturn[], timeslot: Timeslot, missing: UnfilledEntry[]} = {
+	const data: { entries: EntryReturn[]; timeslot: Timeslot; missing: UnfilledEntry[] } = {
 		entries: (await entry_data.json()).msg.map((e: EntryReturn) => {
 			e.timestamp = new Date(e.timestamp);
 
 			return e;
 		}),
 		timeslot: (await timeslot_data.json()).msg[0],
-		missing: (await missing_data.json()).msg,
+		missing: (await missing_data.json()).msg
 	};
 
 	return data;

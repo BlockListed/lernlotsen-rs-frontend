@@ -1,6 +1,4 @@
 <script lang="ts">
-	import ItemContainer from './item_container.svelte';
-
 	import type { Timeslot } from '$lib/types';
 
 	export let timeslot: Timeslot;

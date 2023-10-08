@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
-
 	import { page } from '$app/stores';
 	import dayjs from 'dayjs';
 	import isoWeek from 'dayjs/plugin/isoWeek';
@@ -27,8 +25,6 @@
 		$page.url.searchParams.get('end_week') || dayjs().isoWeek().toString()
 	);
 
-	let base: HTMLDivElement;
-
 	function default_start_week(): number {
 		let default_start_week = timeslots.reduce((acc, ts) => {
 			let date = dayjs(ts.timerange.start);
@@ -47,7 +43,7 @@
 		end_year: number,
 		end_week: number
 	): string {
-		let clean_start_year: Number = start_year || dayjs().year();
+		let clean_start_year: number = start_year || dayjs().year();
 		// Years can have 53 weeks.
 		let clean_start_week = clamp(start_week || default_start_week(), 1, 53);
 		let clean_end_year = end_year || dayjs().year();

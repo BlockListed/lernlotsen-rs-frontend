@@ -56,9 +56,7 @@
 						<h2 class="text-xl font-semibold inline">Next date:</h2>
 						<span class="inline">{list_entry.next.timestamp.toLocaleString()}</span>
 					</div>
-					<span
-						>{list_entry.missing} {list_entry.missing == 1 ? 'entry' : 'entries'} missing.</span
-					>
+					<span>{list_entry.missing} {list_entry.missing == 1 ? 'entry' : 'entries'} missing.</span>
 				</div>
 			</ItemContainer>
 		</a>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Entry, EntryReturn } from '$lib/types';
+	import type { EntryReturn } from '$lib/types';
 	import ItemContainer from './item_container.svelte';
 
 	export let entry: EntryReturn;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { invalidate } from '$app/navigation';
-	import type { Student, Timeslot, CreateEntry, EntryState, SuccessState, UnfilledEntry } from '$lib/types';
+	import type { Student, Timeslot, CreateEntry, EntryState, UnfilledEntry } from '$lib/types';
 
 	export let timeslot: Timeslot;
 	export let entry: UnfilledEntry;
@@ -9,7 +9,7 @@
 
 	let status: string;
 
-	async function handle_submit(e: SubmitEvent) {
+	async function handle_submit() {
 		console.log('submitted');
 
 		let student_states = form.querySelectorAll('#student_states select');
