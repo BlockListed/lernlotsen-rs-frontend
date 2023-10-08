@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { check_auth } from '$lib/auth/0auth.js';
 import { verify_status } from '$lib/http/status.js';
-import type { Entry, EntryReturn, Timeslot, UnfilledEntry } from '$lib/types/index.js';
+import type { EntryReturn, Timeslot, UnfilledEntry } from '$lib/types/index.js';
 
 export async function load({ params, fetch, cookies, depends }) {
 	check_auth(cookies);
