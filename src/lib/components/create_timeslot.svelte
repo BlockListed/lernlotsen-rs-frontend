@@ -79,7 +79,7 @@
 					End Date:
 					<input type="date" name="date-end" class="rounded p-1" required={true} />
 				</label>
-				<label>
+				<label class="mb-1.5">
 					Time Zone:
 					<select name="timezone" class="rounded p-1 w-2/3" required={true}>
 						{#each timezones as tz}
