@@ -5,9 +5,11 @@
 	export let entry: EntryReturn;
 
 	export let subject: string;
+
+	export let timeZone: string;
 </script>
 
-<ItemContainer title={`${subject} - ${entry.timestamp.toLocaleString()}`}>
+<ItemContainer title={`${subject} - ${entry.timestamp.toLocaleString(undefined, { timeZone })}`}>
 	<div class="flex flex-col">
 		<h2 class="text-xl font-medium">Status: {entry.entry.state.status}</h2>
 		{#if entry.entry.state.status === 'Success'}

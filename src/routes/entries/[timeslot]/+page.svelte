@@ -22,7 +22,7 @@
 	{#if data.entries.length != 0}
 		<h2 class="text-2xl font-bold">Entries:</h2>
 		{#each data.entries as entry}
-			<Entry {entry} subject={data.timeslot.subject} />
+			<Entry {entry} subject={data.timeslot.subject} timeZone={data.timeslot.timezone} />
 		{/each}
 	{/if}
 {/if}

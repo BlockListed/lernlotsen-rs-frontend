@@ -14,6 +14,7 @@ export interface Timeslot {
 	time: Range<string>;
 	timerange: Range<string>;
 	weekday: string;
+	timezone: string;
 }
 
 export interface SuccessState {

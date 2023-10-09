@@ -6,7 +6,7 @@
 	export let entry: UnfilledEntry;
 	export let timeslot: Timeslot;
 
-	$: date = new Date(entry.timestamp).toLocaleString();
+	$: date = new Date(entry.timestamp).toLocaleString(undefined, { timeZone: timeslot.timezone });
 </script>
 
 <ItemContainer title={date}>
