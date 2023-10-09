@@ -35,12 +35,7 @@ export const load: PageServerLoad = async ({ cookies, fetch, url }) => {
 	}
 
 	const export_req = await fetch(
-		`${env.API_URL}/timeslots/export?${new URLSearchParams({
-			start_year,
-			start_week,
-			end_year,
-			end_week
-		}).toString()}`
+		`${env.API_URL}/timeslots/export?${search_params.toString()}`
 	);
 
 	// The range end is in the future
