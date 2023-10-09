@@ -22,6 +22,18 @@ export const load: PageServerLoad = async ({ cookies, fetch, url }) => {
 		);
 	}
 
+	const search_params = new URLSearchParams({
+		start_year,
+		start_week,
+		end_year,
+		end_week
+	});
+
+	const allow_incomplete = search.get('allow_incomplete');
+	if (allow_incomplete) {
+		search_params.append("allow_incomplete", allow_incomplete);
+	}
+
 	const export_req = await fetch(
 		`${env.API_URL}/timeslots/export?${new URLSearchParams({
 			start_year,
