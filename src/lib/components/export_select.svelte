@@ -25,6 +25,8 @@
 		$page.url.searchParams.get('end_week') || dayjs().isoWeek().toString()
 	);
 
+	let allow_incomplete: boolean = $page.url.searchParams.get("allow_incomplete") === "true";
+
 	function default_start_week(): number {
 		let default_start_week = timeslots.reduce((acc, ts) => {
 			let date = dayjs(ts.timerange.start);
@@ -41,7 +43,8 @@
 		start_year: number,
 		start_week: number,
 		end_year: number,
-		end_week: number
+		end_week: number,
+		allow_incomplete: boolean,
 	): string {
 		let clean_start_year: number = start_year || dayjs().year();
 		// Years can have 53 weeks.
@@ -53,13 +56,14 @@
 			start_year: clean_start_year.toString(),
 			start_week: clean_start_week.toString(),
 			end_year: clean_end_year.toString(),
-			end_week: clean_end_week.toString()
+			end_week: clean_end_week.toString(),
+			allow_incomplete: allow_incomplete.toString(),
 		});
 
 		return `/export?${search_params.toString()}`;
 	}
 
-	$: link = createLink(start_year, start_week, end_year, end_week);
+	$: link = createLink(start_year, start_week, end_year, end_week, allow_incomplete);
 
 	function submit(e: KeyboardEvent) {
 		if (e.key == 'Enter') {
@@ -93,6 +97,11 @@
 				<input type="number" bind:value={end_week} />
 			</label>
 		</div>
+
+		<label>
+			Allow Incomplete Export:
+			<input type="checkbox" bind:checked={allow_incomplete} />
+		</label>
 	</div>
 
 	<a href={link} data-sveltekit-preload-data="off" class="bg-slate-400">
