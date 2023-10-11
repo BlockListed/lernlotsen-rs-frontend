@@ -4,7 +4,7 @@
 
 	let data: { missing_entries: { subject: string; id: string }[] } | null;
 
-	$: if ($page.status == 428) {
+	$: if ($page.error && $page.status == 428) {
 		data = JSON.parse($page.error.message);
 	}
 </script>
