@@ -13,6 +13,6 @@
 <div class="md:w-2/3">
 	<ExportSelect timeslots={[]} />
 </div>
-<pre on:click={toClipboard} class="m-2 bg-slate-300 md:w-2/3">
+<pre on:click={toClipboard} class="m-2 bg-slate-300 md:w-2/3 cursor-pointer">
 {data.export}
 </pre>
