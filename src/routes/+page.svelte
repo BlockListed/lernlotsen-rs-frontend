@@ -6,6 +6,7 @@
 	import Timeslot from '$lib/components/timeslot.svelte';
 	import CreateTimeslot from '$lib/components/create_timeslot.svelte';
 	import ExportSelect from '$lib/components/export_select.svelte';
+	import { hide_dialog } from '$lib/util';
 
 	export let data: PageData;
 
@@ -14,16 +15,6 @@
 	let create_visible = false;
 
 	let export_dialog: HTMLDialogElement;
-
-	function hide_dialog(e: MouseEvent) {
-		const rect = export_dialog.getBoundingClientRect();
-
-		let in_box = e.x > rect.left && e.x < rect.right && e.y > rect.top && e.y < rect.bottom;
-
-		if (!in_box) {
-			export_dialog.close();
-		}
-	}
 </script>
 
 <div class="flex flex-row lg:w-2/3 w-full">
@@ -35,13 +26,6 @@
 	<div class="w-20 text-sky-500">
 		<button on:click={() => export_dialog.showModal()}><TiExportOutline /></button>
 	</div>
-	<dialog
-		bind:this={export_dialog}
-		on:click={hide_dialog}
-		class="rounded-lg p-4 backdrop:backdrop-blur"
-	>
-		<ExportSelect timeslots={timeslots.map((ts) => ts.ts)} />
-	</dialog>
 </div>
 
 <CreateTimeslot visible={create_visible} />
@@ -54,7 +38,11 @@
 					<Timeslot timeslot={list_entry.ts} />
 					<div>
 						<h2 class="text-xl font-semibold inline">Next date:</h2>
-						<span class="inline">{list_entry.next.timestamp.toLocaleString(undefined, { timeZone: list_entry.ts.timezone })}</span>
+						<span class="inline"
+							>{list_entry.next.timestamp.toLocaleString(undefined, {
+								timeZone: list_entry.ts.timezone
+							})}</span
+						>
 					</div>
 					<span>{list_entry.missing} {list_entry.missing == 1 ? 'entry' : 'entries'} missing.</span>
 				</div>
@@ -62,3 +50,11 @@
 		</a>
 	{/each}
 </div>
+
+<dialog
+	bind:this={export_dialog}
+	on:click={(e) => hide_dialog(e, export_dialog)}
+	class="rounded-lg p-4 backdrop:backdrop-blur"
+>
+	<ExportSelect timeslots={timeslots.map((ts) => ts.ts)} />
+</dialog>
