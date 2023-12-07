@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/private';
-import { check_auth } from '$lib/auth/0auth';
+import { check_auth } from '$lib/auth/auth';
 import { verify_status } from '$lib/http/status';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from '../$types';
@@ -31,12 +31,10 @@ export const load: PageServerLoad = async ({ cookies, fetch, url }) => {
 
 	const allow_incomplete = search.get('allow_incomplete');
 	if (allow_incomplete) {
-		search_params.append("allow_incomplete", allow_incomplete);
+		search_params.append('allow_incomplete', allow_incomplete);
 	}
 
-	const export_req = await fetch(
-		`${env.API_URL}/timeslots/export?${search_params.toString()}`
-	);
+	const export_req = await fetch(`${env.API_URL}/timeslots/export?${search_params.toString()}`);
 
 	// The range end is in the future
 	if (export_req.status == 412) {

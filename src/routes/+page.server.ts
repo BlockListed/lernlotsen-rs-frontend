@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/private';
-import { check_auth } from '$lib/auth/0auth';
+import { check_auth } from '$lib/auth/auth';
 import { verify_status } from '$lib/http/status';
 import type { InformationV3 } from '$lib/types';
 import type { PageServerLoad } from './$types';

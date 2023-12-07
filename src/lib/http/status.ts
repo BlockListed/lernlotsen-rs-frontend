@@ -1,4 +1,4 @@
-import { redirect_auth } from '$lib/auth/0auth';
+import { redirect_auth } from '$lib/auth/auth';
 import { error } from '@sveltejs/kit';
 
 export async function verify_status(r: Response) {

@@ -1,6 +1,10 @@
-import { authorization_url } from '$lib/auth/0auth';
+import { get_authorization_url } from '$lib/auth/auth.server.js';
 import { redirect } from '@sveltejs/kit';
 
-export function load() {
-	throw redirect(302, authorization_url());
+export async function load({ cookies }) {
+	const [auth_url, session_id] = await get_authorization_url();
+
+	cookies.set('session_id', session_id);
+
+	throw redirect(302, auth_url);
 }

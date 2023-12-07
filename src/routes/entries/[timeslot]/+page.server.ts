@@ -1,6 +1,6 @@
 import { env } from '$env/dynamic/private';
-import { check_auth } from '$lib/auth/0auth.js';
-import { verify_status } from '$lib/http/status.js';
+import { check_auth } from '$lib/auth/auth';
+import { verify_status } from '$lib/http/status';
 import type { EntryReturn, Timeslot, UnfilledEntry } from '$lib/types/index.js';
 
 export async function load({ params, fetch, cookies, depends }) {

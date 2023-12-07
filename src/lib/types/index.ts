@@ -78,3 +78,8 @@ export interface InformationV3Item {
 }
 
 export type InformationV3 = InformationV3Item[];
+
+export interface OidcData {
+	auth_url: string;
+	session_id: string;
+}

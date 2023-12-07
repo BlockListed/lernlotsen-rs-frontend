@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/private';
-import { check_auth } from '$lib/auth/0auth';
+import { check_auth } from '$lib/auth/auth';
 import type { CreateEntry } from '$lib/types/index.js';
 import type { RequestHandler } from '@sveltejs/kit';
 

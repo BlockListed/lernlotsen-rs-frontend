@@ -25,7 +25,7 @@
 		$page.url.searchParams.get('end_week') || dayjs().isoWeek().toString()
 	);
 
-	let allow_incomplete: boolean = $page.url.searchParams.get("allow_incomplete") === "true";
+	let allow_incomplete: boolean = $page.url.searchParams.get('allow_incomplete') === 'true';
 
 	function default_start_week(): number {
 		let default_start_week = timeslots.reduce((acc, ts) => {
@@ -44,7 +44,7 @@
 		start_week: number,
 		end_year: number,
 		end_week: number,
-		allow_incomplete: boolean,
+		allow_incomplete: boolean
 	): string {
 		let clean_start_year: number = start_year || dayjs().year();
 		// Years can have 53 weeks.
@@ -57,7 +57,7 @@
 			start_week: clean_start_week.toString(),
 			end_year: clean_end_year.toString(),
 			end_week: clean_end_week.toString(),
-			allow_incomplete: allow_incomplete.toString(),
+			allow_incomplete: allow_incomplete.toString()
 		});
 
 		return `/export?${search_params.toString()}`;
