@@ -7,7 +7,7 @@ export async function get_authorization_url(): Promise<[string, string]> {
 
 	await verify_status(login_req);
 
-	const login_data: OidcData = await login_req.json();
+	const login_data: OidcData = (await login_req.json()).msg;
 
 	return [login_data.auth_url, login_data.session_id];
 }
