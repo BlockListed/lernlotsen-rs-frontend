@@ -12,6 +12,6 @@
 <h2 class="text-xl font-semibold">Students:</h2>
 <ul class="list-inside list-disc">
 	{#each timeslot.students as student}
-		<li>{student.name}</li>
+		<li>{student}</li>
 	{/each}
 </ul>

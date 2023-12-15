@@ -19,8 +19,8 @@
 <ItemContainer title={`${subject} - ${entry.timestamp.toLocaleString(undefined, { timeZone })}`}>
 	<div class="flex flex-row justify-between content-center">
 		<div class="flex flex-col">
-			<h2 class="text-xl font-medium">Status: {entry.entry.state.status}</h2>
-			{#if entry.entry.state.status === 'Success'}
+			<h2 class="text-xl font-medium">Status: {entry.entry.state}</h2>
+			{#if entry.entry.students}
 				<table class="table-auto w-2/3">
 					<thead>
 						<tr>
@@ -30,10 +30,10 @@
 					</thead>
 
 					<tbody>
-						{#each entry.entry.state.students as student}
+						{#each entry.entry.students as student}
 							<tr>
-								<td class="border border-2 border-slate-700">{student[0].name}</td>
-								<td class="border border-2 border-slate-700">{student[1]}</td>
+								<td class="border border-2 border-slate-700">{student.student}</td>
+								<td class="border border-2 border-slate-700">{student.status}</td>
 							</tr>
 						{/each}
 					</tbody>

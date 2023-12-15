@@ -3,9 +3,7 @@ export interface Range<T> {
 	end: T;
 }
 
-export interface Student {
-	name: string;
-}
+export type Student = string;
 
 export interface Timeslot {
 	id: string;
@@ -17,47 +15,31 @@ export interface Timeslot {
 	timezone: string;
 }
 
-export interface SuccessState {
-	status: 'Success';
-	students: [Student, string][];
-}
+export type StudentStatus = 'Present' | 'Pardoned' | 'Missing';
 
-export interface CancelledByStudents {
-	status: 'CancelledByStudents';
-}
-
-export interface StudentsMissing {
-	status: 'StudentsMissing';
-}
-
-export interface CancelledByTutor {
-	status: 'CancelledByTutor';
-}
-
-export interface Holidays {
-	status: 'Holidays';
-}
-
-export interface Other {
-	status: 'Other';
+export interface StudentState {
+	student: string;
+	status: StudentStatus;
 }
 
 export type EntryState =
-	| SuccessState
-	| CancelledByStudents
-	| StudentsMissing
-	| CancelledByTutor
-	| Holidays
-	| Other;
+	| 'Success'
+	| 'CancelledByStudents'
+	| 'StudentsMissing'
+	| 'CancelledByTutor'
+	| 'Holidays'
+	| 'Other';
 
 export interface Entry {
 	index: number;
 	timeslot_id: string;
 	state: EntryState;
+	students: StudentState[];
 }
 
 export interface CreateEntry {
 	state: EntryState;
+	students: StudentState[];
 	index: number;
 }
 
