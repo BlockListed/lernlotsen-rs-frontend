@@ -26,7 +26,12 @@
 		student_inputs = student_inputs.slice(0, student_inputs.length - 1);
 	}
 
-	const timezones = Intl.supportedValuesOf('timeZone');
+	// Yes, this does result in the current timezone being duplicated,
+	// it exists once at the top and once at its correct place in the
+	// list. It's now a feature not a bug.
+	const timezones = [Intl.DateTimeFormat().resolvedOptions().timeZone].concat(
+		Intl.supportedValuesOf('timeZone')
+	);
 </script>
 
 {#if visible}
