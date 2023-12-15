@@ -20,7 +20,7 @@
 	<div class="flex flex-row justify-between content-center">
 		<div class="flex flex-col">
 			<h2 class="text-xl font-medium">Status: {entry.entry.state}</h2>
-			{#if entry.entry.students}
+			{#if entry.entry.students.length != 0}
 				<table class="table-auto w-2/3">
 					<thead>
 						<tr>
