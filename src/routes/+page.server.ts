@@ -4,8 +4,10 @@ import { verify_status } from '$lib/http/status';
 import type { InformationV3 } from '$lib/types';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ cookies, fetch }) => {
+export const load: PageServerLoad = async ({ cookies, fetch, depends }) => {
 	check_auth(cookies);
+
+	depends('app:timeslots');
 
 	const timeslots_req = await fetch(`${env.API_URL}/timeslots/information`);
 

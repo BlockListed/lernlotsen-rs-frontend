@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	import { fly } from 'svelte/transition';
@@ -38,12 +39,11 @@
 	<form
 		transition:fly={{ x: 200, duration: 200 }}
 		use:enhance={() => {
-			return ({ result, update }) => {
+			return async ({ result, update }) => {
 				if (result.type === 'success') {
-					location.reload();
-					return;
+					invalidate('app:timeslots');
 				}
-				update();
+				await update();
 			};
 		}}
 		method="POST"
