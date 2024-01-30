@@ -12,7 +12,7 @@
 	export let timeslots: Timeslot[];
 
 	let start_year: number = parseInt(
-		$page.url.searchParams.get('start_year') || dayjs().year().toString()
+		$page.url.searchParams.get('start_year') || default_start_year().toString()
 	);
 	let start_week: number = parseInt(
 		$page.url.searchParams.get('start_week') || default_start_week().toString()
@@ -32,11 +32,23 @@
 			let date = dayjs(ts.timerange.start);
 			return dayjs().diff(date, 'years') < 1 ? Math.min(acc, date.isoWeek()) : acc;
 		}, 100); // 100 is a sentinel value.
-		if (default_start_week == 100) {
+		if (default_start_week === 100) {
 			default_start_week = 1;
 		}
 
 		return default_start_week;
+	}
+
+	function default_start_year(): number {
+		let default_start_year = timeslots.reduce((acc, ts) => {
+			let date = dayjs(ts.timerange.start);
+			return date.year();
+		}, 4000); // 4000 is a sentinel value.
+		if (default_start_year === 4000) {
+			default_start_year = dayjs().year();
+		}
+
+		return default_start_year;
 	}
 
 	function createLink(
